@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Anasayfa')
+@section('title','Ürün')
 @section('content')
-    <h1>Anasayfa</h1>
+    <h1>Ürün</h1>
 @endsection
