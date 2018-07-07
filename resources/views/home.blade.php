@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Merhaba Ciğerim
+                    Nassın İymisin Ciğerim
                 </div>
             </div>
         </div>
