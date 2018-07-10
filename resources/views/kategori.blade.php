@@ -1,41 +1,26 @@
 @extends('layouts.master')
 
-@section('title','Kategori')
+@section('title', $kategori->kategori_ad)
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="#">Anasayfa</a></li>
-            <li><a href="#">Kategori</a></li>
-            <li class="active">Kategori</li>
+            <li><a href="{{ route("anasayfa") }}">Anasayfa</a></li>
+            <li class="active">{{ $kategori->kategori_ad }}</li>
         </ol>
         <div class="row">
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Kategori Adı</div>
+                    <div class="panel-heading"><b>{{ $kategori->kategori_ad }}</b></div>
                     <div class="panel-body">
+                        @if(isset($alt_kategoriler))
                         <h3>Alt Kategoriler</h3>
                         <div class="list-group categories">
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
+                            @foreach($alt_kategoriler as $alt_kategori)
+                            <a href="{{ route("kategori",$alt_kategori->slug) }}" class="list-group-item"><i class="fa fa-arrow-circle-o-right"></i> {{ $alt_kategori->kategori_ad }}</a>
+                            @endforeach
                         </div>
-                        <h3>Fiyat Aralığı</h3>
-                        <form>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> 100-200
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> 200-300
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
+                        @endif
+
                     </div>
                 </div>
             </div>
