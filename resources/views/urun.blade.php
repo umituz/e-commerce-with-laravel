@@ -1,12 +1,14 @@
 @extends('layouts.master')
 
-@section('title','Ürün')
+@section('title',$urun->urun_ad)
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="#">Anasayfa</a></li>
-            <li><a href="#">Kategori</a></li>
-            <li class="active">Kategori</li>
+            <li><a href="{{ route("anasayfa") }}">Anasayfa</a></li>
+            @foreach($kategoriler as $kategori)
+            <li><a href="{{ route("kategori", $kategori->slug) }}">{{ $kategori->kategori_ad }}</a></li>
+            @endforeach
+            <li class="active">{{ $urun->urun_ad }}</li>
         </ol>
         <div class="bg-content">
             <div class="row">
@@ -26,8 +28,8 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <h1>Ürün adı</h1>
-                    <p class="price">129 ₺</p>
+                    <h1>Ü{{ $urun->urun_ad }}</h1>
+                    <p class="price">{{ $urun->fiyat }} ₺</p>
                     <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                 </div>
             </div>
@@ -38,8 +40,12 @@
                     <li role="presentation"><a href="#t2" data-toggle="tab">Yorumlar</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="t1">t1</div>
-                    <div role="tabpanel" class="tab-pane" id="t2">t2</div>
+                    <div role="tabpanel" class="tab-pane active" id="t1">
+                        {{ $urun->aciklama }}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="t2">
+                        Henüz yorum yapılmadı
+                    </div>
                 </div>
             </div>
 

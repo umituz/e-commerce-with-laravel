@@ -6,6 +6,9 @@ Route::get("/kategori/{kategori_adi}","KategoriController@index")->name('kategor
 
 Route::get("/urun/{urun_adi}","UrunController@index")->name('urun');
 
+Route::post("/ara","UrunController@ara")->name("ara");
+Route::get("/ara","UrunController@ara")->name("ara");
+
 Route::get("/sepet","SepetController@index")->name('sepet');
 
 Route::get("/odeme","OdemeController@index")->name('odeme');
