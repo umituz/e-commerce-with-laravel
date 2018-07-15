@@ -2,6 +2,9 @@
 
 @section("title","Anasayfa")
 @section("content")
+
+    @include("layouts.messages.session_alerts")
+
     <div class="container">
         <div class="row">
             <div class="col-md-3">
