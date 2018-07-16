@@ -29,7 +29,7 @@
                     <div class="carousel-inner" role="listbox">
                         @foreach($urunler_slider as $index => $urun)
                         <div class="item {{ ($index == 0) ? 'active' : '' }}">
-                            <img src="http://lorempixel.com/640/400/food/1" alt="...">
+                            <img src="http://via.placeholder.com/400x200?text=UrunResmi" alt="...">
                             <div class="carousel-caption">
                                 {{ $urun->urun_ad }}
                             </div>
@@ -53,7 +53,7 @@
                     <div class="panel-heading">Günün Fırsatı</div>
                     <div class="panel-body">
                         <a href="{{ route("urun",$urun_gunun_firsati->slug) }}">
-                            <img src="http://lorempixel.com/400/485/food/1" class="img-responsive">
+                            <img src="http://via.placeholder.com/400x200?text=UrunResmi" class="img-responsive">
                             {{ $urun_gunun_firsati->urun_ad }}
                         </a>
                     </div>
@@ -71,7 +71,7 @@
                         @foreach($urunler_one_cikan as $urun)
                             <div class="col-md-3 product">
                                 <a href="{{ route("urun",$urun->slug) }}">
-                                    <img src="http://lorempixel.com/400/400/food/1">
+                                    <img src="http://via.placeholder.com/400x200?text=UrunResmi">
                                 </a>
                                 <p>
                                     <a href="{{ route("urun",$urun->slug) }}">{{ $urun->urun_ad }}</a>
@@ -94,7 +94,7 @@
                         @foreach($urunler_cok_satan as $urun)
                             <div class="col-md-3 product">
                                 <a href="{{ route("urun",$urun->slug) }}">
-                                    <img src="http://lorempixel.com/400/400/food/1">
+                                    <img src="http://via.placeholder.com/400x200?text=UrunResmi">
                                 </a>
                                 <p>
                                     <a href="{{ route("urun",$urun->slug) }}">{{ $urun->urun_ad }}</a>
@@ -116,7 +116,7 @@
                         @foreach($urunler_indirimli as $urun)
                             <div class="col-md-3 product">
                                 <a href="{{ route("urun",$urun->slug) }}">
-                                    <img src="http://lorempixel.com/400/400/food/1">
+                                    <img src="http://via.placeholder.com/400x200?text=UrunResmi">
                                 </a>
                                 <p>
                                     <a href="{{ route("urun",$urun->slug) }}">{{ $urun->urun_ad }}</a>

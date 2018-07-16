@@ -13,24 +13,30 @@
         <div class="bg-content">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="http://lorempixel.com/400/200/food/1">
+                    <img src="http://via.placeholder.com/400x200?text=UrunResmi">
                     <hr>
                     <div class="row">
                         <div class="col-xs-3">
-                            <a href="#" class="thumbnail"><img src="http://lorempixel.com/60/60/food/2"></a>
+                            <a href="#" class="thumbnail"><img src="http://via.placeholder.com/400x200?text=UrunResmi"></a>
                         </div>
                         <div class="col-xs-3">
-                            <a href="#" class="thumbnail"><img src="http://lorempixel.com/60/60/food/3"></a>
+                            <a href="#" class="thumbnail"><img src="http://via.placeholder.com/400x200?text=UrunResmi"></a>
                         </div>
                         <div class="col-xs-3">
-                            <a href="#" class="thumbnail"><img src="http://lorempixel.com/60/60/food/4"></a>
+                            <a href="#" class="thumbnail"><img src="http://via.placeholder.com/400x200?text=UrunResmi"></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <h1>Ü{{ $urun->urun_ad }}</h1>
                     <p class="price">{{ $urun->fiyat }} ₺</p>
-                    <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    <p>
+                        <form action="{{route("sepet.ekle")}}" method="post">
+                            @csrf
+                        <input type="hidden" name="id" value="{{$urun->id}}">
+                        <input type="submit" class="btn btn-theme" value="Sepete Ekle">
+                        </form>
+                    </p>
                 </div>
             </div>
 
