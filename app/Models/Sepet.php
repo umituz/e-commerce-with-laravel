@@ -33,4 +33,9 @@ class Sepet extends Model
             ->select("s.id")
             ->first();
     }
+
+    public function sepet_urunler()
+    {
+        return $this->hasMany("App\Models\SepetUrun");
+    }
 }

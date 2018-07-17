@@ -22,7 +22,7 @@ Route::post("/odemeyap","OdemeController@odemeyap")->name('odemeyap');
 
 Route::group(["middleware" => "auth"], function(){
     Route::get("/siparis","SiparisController@index")->name('siparis');
-    Route::get("/siparis/{id}","SiparisController@detay")->name("siparis_detay");
+    Route::get("/siparis/{id}","SiparisController@detay")->name("siparis.detay");
 });
 
 Route::group(["prefix" => "kullanici"],function(){
