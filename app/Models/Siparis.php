@@ -5,20 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SepetUrun extends Model
+class Siparis extends Model
 {
     use SoftDeletes;
 
-    protected $table = "sepet_urun";
+    protected $table    = "siparis";
 
-    protected $guarded = [];
+    protected $fillable = [
+        "sepet_id","siparis_tutari","durum",
+        "adsoyad","adres","telefon","banka","taksit_tutari", ];
 
     const CREATED_AT = "olusturulma_tarihi";
     const UPDATED_AT = "guncellenme_tarihi";
     const DELETED_AT = "silinme_tarihi";
 
-    public function urun()
+    public function sepet()
     {
-        return $this->belongsTo("App\Models\Urun");
+        return $this->belongsTo("App\Models\Sepet");
     }
 }

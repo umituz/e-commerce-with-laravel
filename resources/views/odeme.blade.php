@@ -4,25 +4,27 @@
     <div class="container">
         <div class="bg-content">
             <h2>Ödeme</h2>
-            <div class="row">
+            <form action="{{ route("odemeyap") }}" method="post">
+                @csrf
+                <div class="row">
                 <div class="col-md-5">
                     <h3>Ödeme Bilgileri</h3>
                     <div class="form-group">
-                        <label for="kartno">Kredi Kartı Numarası</label>
-                        <input type="text" class="form-control kredikarti" id="kartno" name="cardnumber" style="font-size:20px;" required>
+                        <label for="kart_numarasi">Kredi Kartı Numarası</label>
+                        <input type="text" class="form-control kredikarti" id="kart_numarasi" name="kart_numarasi" style="font-size:20px;" required>
                     </div>
                     <div class="form-group">
-                        <label for="cardexpiredatemonth">Son Kullanma Tarihi</label>
+                        <label for="son_kullanma_tarihi_ay">Son Kullanma Tarihi</label>
                         <div class="row">
                             <div class="col-md-6">
                                 Ay
-                                <select name="cardexpiredatemonth" id="cardexpiredatemonth" class="form-control" required>
+                                <select name="son_kullanma_tarihi_ay" id="son_kullanma_tarihi_ay" class="form-control" required>
                                     <option>1</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 Yıl
-                                <select name="cardexpiredateyear" class="form-control" required>
+                                <select name="son_kullanma_tarihi_yil" class="form-control" required>
                                     <option>2017</option>
                                 </select>
                             </div>
@@ -52,20 +54,34 @@
                 </div>
                 <div class="col-md-7">
                     <h4>Ödenecek Tutar</h4>
-                    <span class="price">18.92 <small>TL</small></span>
+                    <span class="price">{{ Cart::total() }} <small>TL</small></span>
 
-                    <h4>Kargo</h4>
-                    <span class="price">0 <small>TL</small></span>
-
-                    <h4>Teslimat Bilgileri</h4>
-                    <p>Teslimat Adresi </p>
-                    <a href="#">Değiştir</a>
-
-                    <h4>Kargo</h4>
-                    <p>Ücretsiz
+                    <h4>İletişim Bilgileri</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="adsoyad">Ad Soyad</label>
+                                <input type="text" name="adsoyad" value="{{ auth()->user()->adsoyad }}" class="form-control" id="adsoyad" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="telefon">Telefon</label>
+                                <input type="text" name="telefon" value="{{ $kullanici_detay->telefon }}" class="form-control" id="telefon" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="adres">Adres</label>
+                                <input type="text" name="adres" value="{{ $kullanici_detay->adres }}" class="form-control" id="adres" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            </form>
         </div>
     </div>
 @endsection

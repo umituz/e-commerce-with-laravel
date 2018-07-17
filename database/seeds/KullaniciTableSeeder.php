@@ -12,7 +12,11 @@ class KullaniciTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         DB::table("kullanici")->truncate();
         DB::table("kullanici")->insert(["adsoyad" => "Ümit UZ","email" => "umituz998@gmail.com","sifre" => Hash::make(159538)]);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

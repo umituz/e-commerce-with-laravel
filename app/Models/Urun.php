@@ -11,7 +11,6 @@ class Urun extends Model
 
     protected $table    = "urun";
     protected $fillable = ["urun_ad","slug","aciklama","fiyat"];
-    //protected $guarded  = [];
 
     const CREATED_AT = "olusturulma_tarihi";
     const UPDATED_AT = "guncellenme_tarihi";

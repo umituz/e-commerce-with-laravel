@@ -17,9 +17,11 @@ Route::group(["prefix" => "sepet"],function(){
     Route::patch("/guncelle/{rowId}","SepetController@guncelle")->name("sepet.guncelle");
 });
 
+Route::get("/odeme","OdemeController@index")->name('odeme');
+Route::post("/odemeyap","OdemeController@odemeyap")->name('odemeyap');
+
 Route::group(["middleware" => "auth"], function(){
-    Route::get("/odeme","OdemeController@index")->name('odeme');
-    Route::get("/siparis","SiparisController@index")->name('siparis ');
+    Route::get("/siparis","SiparisController@index")->name('siparis');
     Route::get("/siparis/{id}","SiparisController@detay")->name("siparis_detay");
 });
 
@@ -32,8 +34,8 @@ Route::group(["prefix" => "kullanici"],function(){
     Route::get("/oturumukapat","KullaniciController@oturumukapat")->name("kullanici.oturumukapat");
 });
 
-Route::get("test/email",function(){
-    $kullanici = \App\Models\Kullanici::find(1);
-    return new App\Mail\KullaniciKayit($kullanici);
-});
+//Route::get("test/email",function(){
+//    $kullanici = \App\Models\Kullanici::find(1);
+//    return new App\Mail\KullaniciKayit($kullanici);
+//});
 

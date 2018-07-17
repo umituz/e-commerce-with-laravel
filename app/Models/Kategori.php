@@ -11,7 +11,6 @@ class Kategori extends Model
 
     protected $table    = "kategori";
     protected $fillable = ["kategori_ad","slug"];
-    //protected $guarded  = [];
 
     const CREATED_AT = "olusturulma_tarihi";
     const UPDATED_AT = "guncellenme_tarihi";
