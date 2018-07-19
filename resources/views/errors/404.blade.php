@@ -1,6 +1,6 @@
 @extends("layouts.master")
 
-@section("title","Anasayfa")
+@section("title","AnasayfaController")
 @section("content")
     <div class="container">
         <div class="jumbotron text-center">
