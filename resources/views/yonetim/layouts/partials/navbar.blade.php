@@ -18,10 +18,10 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">Home</a>
+                    <a href="{{route("yonetim.anasayfa")}}">Yönetim Paneli</a>
                 </li>
                 <li>
-                    <a href="#">Settings</a>
+                    <a href="#">Ayarlar</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -30,12 +30,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">Action</a>
-                        </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a href="#">Logout</a>
+                            <a href="{{ route("yonetim.oturumukapat") }}">Oturumu Kapat</a>
                         </li>
                     </ul>
                 </li>

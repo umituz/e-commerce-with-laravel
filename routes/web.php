@@ -2,8 +2,19 @@
 
 Route::group(["prefix" => "yonetim","namespace" => "Yonetim"],function(){
     Route::redirect("/","/yonetim/oturumac");
-    Route::get("/anasayfa","AnasayfaController@index")->name("anasayfa");
-    Route::get("/oturumac","KullaniciController@oturumac");
+    Route::match(["get","post"],"/oturumac","KullaniciController@oturumac")->name("yonetim.oturumac");
+    Route::group(["middleware" => "yonetim"],function(){
+        Route::get("/anasayfa","AnasayfaController@index")->name("yonetim.anasayfa");
+        Route::get("/otumukapat","KullaniciController@oturumukapat")->name("yonetim.oturumukapat");
+        Route::group(["prefix" => "kullanici"],function(){
+            Route::match(["get","post"],"/","KullaniciController@index")->name("yonetim.kullanici.index");
+            Route::get("/yeni","KullaniciController@form")->name("yonetim.kullanici.yeni");
+            Route::get("/duzenle/{id}","KullaniciController@form")->name("yonetim.kullanici.duzenle");
+            Route::post("/kaydet/{id?}","KullaniciController@kaydet")->name("yonetim.kullanici.kaydet");
+            Route::get("/sil/{id}","KullaniciController@sil")->name("yonetim.kullanici.sil");
+        });
+    });
+
 });
 
 Route::get("/","AnasayfaController@index")->name('anasayfa');

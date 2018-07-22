@@ -11,12 +11,14 @@
 
 <body>
 <div class="container">
-    <form class="form-signin">
+    <form class="form-signin" action="{{ route("yonetim.oturumac") }}" method="post">
+        @csrf
         <img src="/img/logo.png" class="logo">
+        @include("layouts.messages.validation_errors")
         <label for="email" class="sr-only">E-posta Adresi</label>
         <input type="email" id="email" name="email" class="form-control" placeholder="E-posta" required autofocus>
         <label for="password" class="sr-only">Şifre</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Şifre" required>
+        <input type="password" id="password" name="sifre" class="form-control" placeholder="Şifre" required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" name="benihatirla" value="1" checked> Beni Hatırla
