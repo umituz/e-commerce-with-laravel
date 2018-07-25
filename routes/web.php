@@ -3,9 +3,12 @@
 Route::group(["prefix" => "yonetim","namespace" => "Yonetim"],function(){
     Route::redirect("/","/yonetim/oturumac");
     Route::match(["get","post"],"/oturumac","KullaniciController@oturumac")->name("yonetim.oturumac");
+
     Route::group(["middleware" => "yonetim"],function(){
+
         Route::get("/anasayfa","AnasayfaController@index")->name("yonetim.anasayfa");
         Route::get("/otumukapat","KullaniciController@oturumukapat")->name("yonetim.oturumukapat");
+
         Route::group(["prefix" => "kullanici"],function(){
             Route::match(["get","post"],"/","KullaniciController@index")->name("yonetim.kullanici.index");
             Route::get("/yeni","KullaniciController@form")->name("yonetim.kullanici.yeni");
@@ -13,7 +16,19 @@ Route::group(["prefix" => "yonetim","namespace" => "Yonetim"],function(){
             Route::post("/kaydet/{id?}","KullaniciController@kaydet")->name("yonetim.kullanici.kaydet");
             Route::get("/sil/{id}","KullaniciController@sil")->name("yonetim.kullanici.sil");
         });
+
+        Route::group(["prefix" => "kategori"],function(){
+            Route::match(["get","post"],"/","KategoriController@index")->name("yonetim.kategori");
+            Route::get("/yeni","KategoriController@form")->name("yonetim.kategori.yeni");
+            Route::get("/duzenle/{id}","KategoriController@form")->name("yonetim.kategori.duzenle");
+            Route::post("/kaydet/{id?}","KategoriController@kaydet")->name("yonetim.kategori.kaydet");
+            Route::get("/sil/{id}","KategoriController@sil")->name("yonetim.kategori.sil");
+        });
+
     });
+
+    
+
 
 });
 

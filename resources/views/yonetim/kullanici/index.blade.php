@@ -39,6 +39,13 @@
             </tr>
             </thead>
             <tbody>
+            @if(count($kullanicilar) == 0)
+                <tr>
+                    <td align="center" colspan="7">
+                        <b>KAYIT BULUNAMADI</b>
+                    </td>
+                </tr>
+            @endif
             @foreach($kullanicilar as $kullanici)
             <tr>
                 <td>{{$kullanici->id}}</td>
