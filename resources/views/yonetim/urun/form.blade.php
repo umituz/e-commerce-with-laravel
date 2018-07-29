@@ -5,7 +5,7 @@
 @section("content")
     <h1 class="page-header">Ürünler Yönetimi</h1>
 
-    <form method="post"
+    <form method="post" enctype="multipart/form-data"
           action="{{ route("yonetim.urun.kaydet",@$urun->id) }}">
           @csrf
         <div class="pull-right">
@@ -22,7 +22,7 @@
 
         <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="urun_ad">
                         ÜRÜN ADI
@@ -35,7 +35,7 @@
                            placeholder="ÜRÜN ADI">
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="slug">
                         SLUG
@@ -51,7 +51,7 @@
                            placeholder="SLUG">
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="fiyat">
                         ÜRÜN FİYATI
@@ -62,6 +62,21 @@
                            class="form-control"
                            id="fiyat"
                            placeholder="ÜRÜN FİYATI">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="kategoriler">
+                        ÜRÜN KATEGORİSİ
+                    </label>
+                    <select name="kategoriler[]" id="kategoriler" multiple class="form-control">
+                        @foreach($kategoriler as $kategori)
+                        <option value="{{ $kategori->id }}"
+                                {{ collect(old("kategoriler",$urun_kategorileri))->contains($kategori->id) ? "selected" : null }}>
+                            {{ $kategori->kategori_ad }}
+                        </option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-md-12">
@@ -111,6 +126,42 @@
                     </label>
                 </div>
             </div>
+            <div class="col-md-4">
+                @if($urun->detay->urun_resmi != null)
+                    <img src="/uploads/urunler/{{ $urun->detay->urun_resmi }}"
+                         style="height:100px;"
+                         class="thumbnail pull-left" >
+                @endif
+                <label for="urun_resmi">Ürün Resmi</label>
+                <input type="file" id="urun_resmi" name="urun_resmi" class="form-control">
+            </div>
         </div>
     </form>
+@endsection
+@section("admin_scripts")
+    <script src="/js/select2.min.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/my_plugins/autogrow.min.js"></script>
+    <script>
+        $(function(){
+            $("#kategoriler").select2({
+                placeholder:"KATEGORİ SEÇİNİZ"
+            });
+            var options = {
+                uiColor : "#f4645f",
+                language : "tr",
+                extraPlugins : "autogrow",
+                autoGrow_minHeight : 250,
+                autoGrow_maxHeight : 600,
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+            }
+            CKEDITOR.replace("aciklama",options);
+        });
+    </script>
+@endsection
+@section("admin_styles")
+    <link rel="stylesheet" href="/css/select2.min.css">
 @endsection

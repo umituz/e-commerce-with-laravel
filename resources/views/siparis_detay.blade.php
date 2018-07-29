@@ -19,7 +19,11 @@
                 <tr>
                     <td width="120">
                         <a href="{{ route("urun",$sepet_urun->urun->slug) }}">
-                            <img src="http://via.placeholder.com/120x100?text=UrunResmi">
+                            <img src="{{ $sepet_urun->urun->detay->urun_resmi != null ?
+                             asset('uploads/urunler/' . $sepet_urun->urun->detay->urun_resmi) :
+                             'http://via.placeholder.com/120x100?text=UrunResmi' }}"
+                                 class="img-responsive"
+                                 style="height:120px">
                         </a>
                     </td>
                     <td>

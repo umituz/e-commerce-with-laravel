@@ -38,4 +38,9 @@ class Sepet extends Model
     {
         return $this->hasMany("App\Models\SepetUrun");
     }
+
+    public function kullanici()
+    {
+        return $this->belongsTo("App\Models\Kullanici");
+    }
 }

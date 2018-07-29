@@ -30,6 +30,7 @@
             <thead class="thead-dark">
             <tr>
                 <th>#</th>
+                <th>#</th>
                 <th>Slug</th>
                 <th>Ürün Adı</th>
                 <th>Fiyat</th>
@@ -40,7 +41,7 @@
             <tbody>
             @if(count($urunler) == 0)
                 <tr>
-                    <td align="center" colspan="7">
+                    <td align="center" colspan="8">
                         <b>KAYIT BULUNAMADI</b>
                     </td>
                 </tr>
@@ -48,6 +49,13 @@
             @foreach($urunler as $urun)
             <tr>
                 <td>{{$urun->id}}</td>
+                <td>
+                    <img src="{{ $urun->detay->urun_resmi != null ?
+                             asset('uploads/urunler/' . $urun->detay->urun_resmi) :
+                             'http://via.placeholder.com/400x200?text=UrunResmi' }}"
+                         class="img-responsive"
+                         style="width:100px">
+                </td>
                 <td>{{$urun->slug}}</td>
                 <td>{{$urun->urun_ad}}</td>
                 <td>{{$urun->fiyat}}</td>

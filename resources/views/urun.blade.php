@@ -47,7 +47,7 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="t1">
-                        {{ $urun->aciklama }}
+                        {!! $urun->aciklama !!}
                     </div>
                     <div role="tabpanel" class="tab-pane" id="t2">
                         Henüz yorum yapılmadı
