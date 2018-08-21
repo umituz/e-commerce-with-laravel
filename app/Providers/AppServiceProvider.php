@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Ayar;
 use App\Models\Urun;
 use App\Models\Kullanici;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -35,6 +37,14 @@ class AppServiceProvider extends ServiceProvider
             });
             $view->with("istatistikler",$istatistikler);
         });
+
+        if(Schema::hasTable('ayar'))
+        {
+            foreach(Ayar::all() as $ayar)
+            {
+                Config::set("ayar.".$ayar->anahtar,$ayar->deger);
+            }
+        }
 
 
     }
