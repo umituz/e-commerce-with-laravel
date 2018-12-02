@@ -38,7 +38,6 @@ class UrunController extends Controller
         {
             $urun = Urun::find($id);
             $urun_kategorileri = $urun->kategoriler()->pluck("kategori_id")->all();
-
         }
 
         $kategoriler = Kategori::all();
