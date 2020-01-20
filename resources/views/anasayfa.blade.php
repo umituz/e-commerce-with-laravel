@@ -7,40 +7,41 @@
 
     <div class="container">
         <div class="row">
+
             <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">Kategoriler</div>
                     <div class="list-group categories">
                         @foreach($kategoriler as $kategori)
-                        <a href="{{ route("kategori",$kategori->slug) }}" class="list-group-item">
-                            <i class="fa fa-arrow-circle-o-right"></i> {{ $kategori->kategori_ad }}
-                        </a>
+                            <a href="{{ route("kategori",$kategori->slug) }}" class="list-group-item">
+                                <i class="fa fa-arrow-circle-o-right"></i> {{ $kategori->kategori_ad }}
+                            </a>
                         @endforeach
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                       @for($i=0; $i<count($urunler_slider); $i++)
-                        <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}" class="{{ ($i == 0) ? 'active' : '' }}"></li>
+                        @for($i=0; $i<count($urunler_slider); $i++)
+                            <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}"
+                                class="{{ ($i == 0) ? 'active' : '' }}"></li>
                         @endfor
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         @foreach($urunler_slider as $index => $urun)
-                        <div class="item {{ ($index == 0) ? 'active' : '' }}">
-                            <img src="{{ $urun->detay->urun_resmi != null ?
-                             asset('uploads/urunler/' . $urun->detay->urun_resmi) :
+                            <div class="item {{ ($index == 0) ? 'active' : '' }}">
+                                <img src="{{ $urun->detay->urun_resmi != null ?
+                             $urun->detay->urun_resmi :
                              'http://via.placeholder.com/400x200?text=UrunResmi' }}"
-                                 class="img-responsive"
-                                 style="min-width:100%">
-                            <div class="carousel-caption">
-                                {{ $urun->urun_ad }}
+                                     class="img-responsive"
+                                     style="min-width:100%">
+                                <div class="carousel-caption">
+                                    {{ $urun->urun_ad }}
+                                </div>
                             </div>
-                        </div>
                         @endforeach
-
-
                     </div>
                     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -52,13 +53,15 @@
                     </a>
                 </div>
             </div>
+
+
             <div class="col-md-3">
                 <div class="panel panel-default" id="sidebar-product">
                     <div class="panel-heading">Günün Fırsatı</div>
                     <div class="panel-body">
                         <a href="{{ route("urun",$urun_gunun_firsati->slug) }}">
                             <img src="{{ $urun_gunun_firsati->detay->urun_resmi != null ?
-                             asset('uploads/urunler/' . $urun_gunun_firsati->detay->urun_resmi) :
+                             $urun_gunun_firsati->detay->urun_resmi :
                              'http://via.placeholder.com/400x200?text=UrunResmi' }}"
                                  class="img-responsive"
                                  style="min-width:100%">
@@ -80,7 +83,7 @@
                             <div class="col-md-3 product">
                                 <a href="{{ route("urun",$urun->slug) }}">
                                     <img src="{{ $urun->detay->urun_resmi != null ?
-                             asset('uploads/urunler/' . $urun->detay->urun_resmi) :
+                             $urun->detay->urun_resmi :
                              'http://via.placeholder.com/400x200?text=UrunResmi' }}"
                                          class="img-responsive"
                                          style="min-width:100%">
@@ -107,7 +110,7 @@
                             <div class="col-md-3 product">
                                 <a href="{{ route("urun",$urun->slug) }}">
                                     <img src="{{ $urun->detay->urun_resmi != null ?
-                             asset('uploads/urunler/' . $urun->detay->urun_resmi) :
+                             $urun->detay->urun_resmi :
                              'http://via.placeholder.com/400x200?text=UrunResmi' }}"
                                          class="img-responsive"
                                          style="min-width:100%">
@@ -133,7 +136,7 @@
                             <div class="col-md-3 product">
                                 <a href="{{ route("urun",$urun->slug) }}">
                                     <img src="{{ $urun->detay->urun_resmi != null ?
-                             asset('uploads/urunler/' . $urun->detay->urun_resmi) :
+                             $urun->detay->urun_resmi :
                              'http://via.placeholder.com/400x200?text=UrunResmi' }}"
                                          class="img-responsive"
                                          style="min-width:100%">

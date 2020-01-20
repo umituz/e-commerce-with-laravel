@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Sepet;
 use App\Models\SepetUrun;
-use Illuminate\Http\Request;
 use App\Models\Urun;
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Validator;
 
+/**
+ * Class SepetController
+ * @package App\Http\Controllers
+ */
 class SepetController extends Controller
 {
     public function index()
