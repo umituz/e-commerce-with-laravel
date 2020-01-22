@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('title','Siparis')
 @section('content')
     <div class="container">
@@ -17,6 +16,7 @@
                     <th></th>
                 </tr>
                 @foreach($siparisler as $siparis)
+
                 <tr>
                     <td>SP-{{ $siparis->id }}</td>
                     <td>{{ $siparis->siparis_tutari * ((100+config("cart.tax")) / 100)}}</td>
