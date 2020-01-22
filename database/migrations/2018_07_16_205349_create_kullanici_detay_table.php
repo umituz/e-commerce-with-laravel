@@ -16,10 +16,15 @@ class CreateKullaniciDetayTable extends Migration
         Schema::create('kullanici_detay', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('kullanici_id')->unsigned();
+            $table->foreign("kullanici_id")
+                ->references("id")
+                ->on("kullanici")
+                ->onDelete("cascade")
+                ->onUpdate("cascade");
+
             $table->string('adres')->default('Gaziantep');
             $table->string('telefon')->default('5427840151');
 
-            $table->foreign("kullanici_id")->references("id")->on("kullanici")->onDelete("cascade");
 
         });
     }

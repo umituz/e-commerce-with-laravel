@@ -16,13 +16,22 @@ class CreateSepetUrunTable extends Migration
         Schema::create('sepet_urun', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sepet_id')->unsigned();
+            $table->foreign("sepet_id")
+                ->references("id")
+                ->on("sepet")
+                ->onDelete("cascade")
+                ->onUpdate("cascade");
+
             $table->integer('urun_id')->unsigned();
+            $table->foreign("urun_id")
+                ->references("id")
+                ->on("urun")
+                ->onDelete("cascade")
+                ->onUpdate("cascade");
+
             $table->integer('adet');
             $table->decimal('fiyat',10,2);
             $table->string("durum",30);
-
-            $table->foreign("sepet_id")->references("id")->on("sepet")->onDelete("cascade");
-            $table->foreign("urun_id")->references("id")->on("urun")->onDelete("cascade");
 
             $table->timestamp("olusturulma_tarihi")
                 ->default(DB::raw("CURRENT_TIMESTAMP"));

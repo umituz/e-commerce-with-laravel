@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('title','Sepet')
+
 @section('content')
     <div class="container">
         <div class="bg-content">
@@ -70,7 +71,7 @@
                         @method("delete")
                         <input type="submit" class="btn btn-info pull-left" value="Sepeti Boşalt " />
                     </form>
-                    
+
                     <a href="{{ route("odeme") }}" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
                 </div>
             @else

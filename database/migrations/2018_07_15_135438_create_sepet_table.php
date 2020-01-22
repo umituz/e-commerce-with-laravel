@@ -16,6 +16,11 @@ class CreateSepetTable extends Migration
         Schema::create('sepet', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('kullanici_id')->unsigned();
+            $table->foreign("kullanici_id")
+                ->references("id")
+                ->on("kullanici")
+                ->onDelete("cascade")
+                ->onUpdate("cascade");
 
             $table->timestamp("olusturulma_tarihi")
                 ->default(DB::raw("CURRENT_TIMESTAMP"));
@@ -23,7 +28,6 @@ class CreateSepetTable extends Migration
                 ->default(DB::raw("CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP"));
             $table->timestamp("silinme_tarihi")->nullable();
 
-            $table->foreign("kullanici_id")->references("id")->on("kullanici")->onDelete("cascade");
         });
     }
 

@@ -15,7 +15,14 @@ class CreateSiparisTable extends Migration
     {
         Schema::create('siparis', function (Blueprint $table) {
             $table->increments('id');
+            $table->unique("sepet_id");
             $table->integer('sepet_id')->unsigned();
+            $table->foreign("sepet_id")
+                ->references("id")
+                ->on("sepet")
+                ->onDelete("cascade")
+                ->onUpdate("cascade");
+
             $table->decimal('siparis_tutari',10,4);
             $table->string("durum",30)->nullable();
             $table->string("banka")->nullable();
@@ -31,8 +38,6 @@ class CreateSiparisTable extends Migration
                 ->default(DB::raw("CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP"));
             $table->timestamp("silinme_tarihi")->nullable();
 
-            $table->unique("sepet_id");
-            $table->foreign("sepet_id")->references("id")->on("sepet")->onDelete("cascade");
         });
     }
 

@@ -6,6 +6,10 @@ use App\Models\Sepet;
 use App\Models\SepetUrun;
 use App\Models\Urun;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Validator;
 
 /**
@@ -14,11 +18,17 @@ use Validator;
  */
 class SepetController extends Controller
 {
+    /**
+     * @return Factory|View
+     */
     public function index()
     {
         return view('sepet');
     }
 
+    /**
+     * @return RedirectResponse
+     */
     public function ekle()
     {
         $urun = Urun::find(request("id"));
@@ -46,6 +56,10 @@ class SepetController extends Controller
             ->with("mesaj_tur","success");
     }
 
+    /**
+     * @param $rowId
+     * @return RedirectResponse
+     */
     public function kaldir($rowId)
     {
         if(auth()->check())
@@ -63,6 +77,9 @@ class SepetController extends Controller
             ->with("mesaj_tur","success");
     }
 
+    /**
+     * @return RedirectResponse
+     */
     public function bosalt()
     {
         if(auth()->check())
@@ -78,6 +95,10 @@ class SepetController extends Controller
             ->with("mesaj_tur","success");
     }
 
+    /**
+     * @param $rowId
+     * @return JsonResponse
+     */
     public function guncelle($rowId)
     {
         $validator = Validator::make(request()->all(),[

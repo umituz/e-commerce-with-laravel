@@ -23,8 +23,6 @@ class CreateKategoriTable extends Migration
             $table->timestamp("guncellenme_tarihi")
                   ->default(DB::raw("CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP"));
             $table->timestamp("silinme_tarihi")->nullable();
-
-            //$table->timestamps();
         });
     }
 

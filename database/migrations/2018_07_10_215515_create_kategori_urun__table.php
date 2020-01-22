@@ -16,10 +16,18 @@ class CreateKategoriUrunTable extends Migration
         Schema::create('kategori_urun', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('kategori_id')->unsigned()->index();
-            $table->integer('urun_id')->unsigned()->index();
+            $table->foreign('kategori_id')
+                ->references('id')
+                ->on('kategori')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
-            $table->foreign('urun_id')->references('id')->on('urun')->onDelete('cascade');
+            $table->integer('urun_id')->unsigned()->index();
+            $table->foreign('urun_id')
+                ->references('id')
+                ->on('urun')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
         });
     }
