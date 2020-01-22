@@ -43,9 +43,6 @@ Route::group(["prefix" => "yonetim","namespace" => "Yonetim"],function(){
 
     });
 
-    
-
-
 });
 
 Route::get("/","AnasayfaController@index")->name('anasayfa');
@@ -81,9 +78,3 @@ Route::group(["prefix" => "kullanici"],function(){
     Route::get("/aktiflestir/{anahtar}","KullaniciController@aktiflestir")->name("aktiflestir");
     Route::get("/oturumukapat","KullaniciController@oturumukapat")->name("kullanici.oturumukapat");
 });
-
-//Route::get("test/email",function(){
-//    $kullanici = \App\Models\Kullanici::find(1);
-//    return new App\Mail\KullaniciKayit($kullanici);
-//});
-

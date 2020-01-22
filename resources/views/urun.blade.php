@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <h1>Ü{{ $urun->urun_ad }}</h1>
+                    <h1>{{ $urun->urun_ad }}</h1>
                     <p class="price">{{ $urun->fiyat }} ₺</p>
                     <p>
                         <form action="{{route("sepet.ekle")}}" method="post">

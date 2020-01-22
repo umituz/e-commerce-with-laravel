@@ -26,7 +26,7 @@ class CreateUrunDetayTable extends Migration
             $table->boolean("goster_one_cikan")->default(0);
             $table->boolean("goster_cok_satan")->default(0);
             $table->boolean("goster_indirimli")->default(0);
-            $table->string("urun_resmi", 50)->default('https://picsum.photos/200/300');
+            $table->string("urun_resmi", 50)->default('http://via.placeholder.com/400x200?text=UrunResmi');
         });
     }
 
