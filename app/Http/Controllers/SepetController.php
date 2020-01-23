@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sepet;
 use App\Models\SepetUrun;
 use App\Models\Urun;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use LaravelCard\Facades\Cart;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
