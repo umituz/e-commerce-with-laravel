@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
+use App\Models\CardDetail;
 use App\Models\Sepet;
 use App\Models\SepetUrun;
 use App\Models\Urun;
@@ -34,7 +36,6 @@ class SepetController extends Controller
         $urun = Urun::find(request("id"));
 
         $cartItem = Cart::add($urun->id, $urun->urun_ad, 1, $urun->fiyat, ["slug" => $urun->slug]);
-
         if (auth()->check()) {
             $aktif_sepet_id = session("aktif_sepet_id");
 
@@ -44,10 +45,17 @@ class SepetController extends Controller
                 session()->put("aktif_sepet_id", $aktif_sepet_id);
             }
 
-            SepetUrun::updateOrCreate(
-                ["sepet_id" => $aktif_sepet_id, "urun_id" => $urun->id],
+            $card = Card::firstOrCreate([
+                'kullanici_id' => auth()->id(),
+                'ip_address' => request()->server('REMOTE_ADDR'),
+                'user_agent' => request()->server('HTTP_USER_AGENT')
+            ]);
+
+            CardDetail::updateOrCreate(
+                ['card_id' => $aktif_sepet_id, 'urun_id' => $urun->id],
                 ["adet" => $cartItem->qty, "fiyat" => $cartItem->price, "durum" => "Beklemede"]
             );
+
         }
 
         return redirect()
