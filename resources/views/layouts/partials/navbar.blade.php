@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -16,7 +17,8 @@
             <form class="navbar-form navbar-left" action="{{ route("ara") }}" method="post">
                 @csrf
                 <div class="input-group">
-                    <input type="text" name="aranan" value="{{ old("aranan") }}" id="navbar-search" class="form-control" placeholder="Ara">
+                    <input type="text" name="aranan" value="{{ old("aranan") }}" id="navbar-search" class="form-control"
+                           placeholder="Ara">
                     <span class="input-group-btn">
                             <button type="submit" class="btn btn-default">
                                 <i class="fa fa-search"></i>
@@ -27,7 +29,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="{{ route("sepet") }}">
-                        <i class="fa fa-shopping-cart"></i> Sepet <span class="badge badge-theme">{{ Cart::count() }}</span>
+                        <i class="fa fa-shopping-cart"></i> Sepet
+                        @if(class_exists(Cart::class))
+                            <span class="badge badge-theme">{{ Cart::count() }}</span>
+                        @endif
                     </a>
                 </li>
                 @guest
@@ -36,7 +41,8 @@
                 @endguest
                 @auth
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Profil <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"> Profil <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="{{ route("siparis") }}">
@@ -54,7 +60,7 @@
                             </li>
                         </ul>
                     </li>
-               @endauth
+                @endauth
 
             </ul>
         </div>
