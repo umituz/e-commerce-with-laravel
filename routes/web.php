@@ -78,3 +78,7 @@ Route::group(["prefix" => "kullanici"],function(){
     Route::get("/aktiflestir/{anahtar}","KullaniciController@aktiflestir")->name("aktiflestir");
     Route::get("/oturumukapat","KullaniciController@oturumukapat")->name("kullanici.oturumukapat");
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
