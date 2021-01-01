@@ -7,24 +7,37 @@ use App\Models\KullaniciDetay;
 use App\Models\SepetUrun;
 use App\Models\Sepet;
 use App\Models\Kullanici;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Cart;
 
+/**
+ * Class KullaniciController
+ * @package App\Http\Controllers
+ */
 class KullaniciController extends Controller
 {
+    /**
+     * KullaniciController constructor.
+     */
     public function __construct()
     {
         $this->middleware("guest")->except("oturumukapat");
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function giris_form()
     {
         return view('kullanici.oturumac');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function giris()
     {
         $this->validate(request(),[
@@ -50,23 +63,25 @@ class KullaniciController extends Controller
             }
             session()->put("aktif_sepet_id",$aktif_sepet_id);
 
-            if(Cart::count() > 0)
-            {
-                foreach(Cart::content() as $cartItem)
+            $cartClass = Cart::class;
+            if(class_exists($cartClass)){
+                if(Cart::count() > 0)
                 {
-                    SepetUrun::updateOrCreate(
-                        ["sepet_id" => $aktif_sepet_id, "urun_id" => $cartItem->id],
-                        ["adet" => $cartItem->qty, "fiyat" => $cartItem->price, "durum" => "Beklemede"]
-                    );
+                    foreach(Cart::content() as $cartItem)
+                    {
+                        SepetUrun::updateOrCreate(
+                            ["sepet_id" => $aktif_sepet_id, "urun_id" => $cartItem->id],
+                            ["adet" => $cartItem->qty, "fiyat" => $cartItem->price, "durum" => "Beklemede"]
+                        );
+                    }
+                }
+                Cart::destroy();
+                $sepetUrunler = SepetUrun::where("sepet_id",$aktif_sepet_id)->get();
+                foreach($sepetUrunler as $sepetUrun)
+                {
+                    Cart::add($sepetUrun->urun->id,$sepetUrun->urun->urun_ad,$sepetUrun->adet,$sepetUrun->fiyat,["slug" => $sepetUrun->urun->slug]);
                 }
             }
-            Cart::destroy();
-            $sepetUrunler = SepetUrun::where("sepet_id",$aktif_sepet_id)->get();
-            foreach($sepetUrunler as $sepetUrun)
-            {
-                Cart::add($sepetUrun->urun->id,$sepetUrun->urun->urun_ad,$sepetUrun->adet,$sepetUrun->fiyat,["slug" => $sepetUrun->urun->slug]);
-            }
-
             return redirect()->intended("/");
         }
         else
@@ -76,11 +91,18 @@ class KullaniciController extends Controller
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function kaydol_form()
     {
         return view('kullanici.kaydol');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function kaydol()
     {
         $this->validate(request(),[
@@ -106,6 +128,9 @@ class KullaniciController extends Controller
         return redirect()->route("anasayfa");
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function oturumukapat()
     {
         auth()->logout();
@@ -115,6 +140,10 @@ class KullaniciController extends Controller
 
     }
 
+    /**
+     * @param $anahtar
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function aktiflestir($anahtar)
     {
         $kullanici = Kullanici::where("aktivasyon_anahtari",$anahtar)->first();
