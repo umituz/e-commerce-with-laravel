@@ -1,28 +1,35 @@
 <?php
 
+namespace Database\Seeders;
+
+use DB;
 use Illuminate\Database\Seeder;
 use App\Models\Urun;
 use App\Models\UrunDetay;
 
+/**
+ * Class UrunTableSeeder
+ * @package Database\Seeders
+ */
 class UrunTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeders.
      *
      * @return void
      */
-    public function run(Faker\Generator $faker)
+    public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Urun::truncate();
         UrunDetay::truncate();
         for ($i = 0; $i <= 50; $i++) {
-            $urun_ad = $faker->sentence(2);
+            $urun_ad = 'ürün test + ' . $i;
             $urun = Urun::create([
                 "urun_ad" => $urun_ad,
                 "slug" => str_slug($urun_ad),
-                "aciklama" => $faker->sentence(15),
-                "fiyat" => $faker->randomFloat(2, 1, 10)
+                "aciklama" => 'Açıklamna  + ' . $i,
+                "fiyat" => rand(10,999)
             ]);
             $detay = $urun->detay()->create([
                 "goster_slider" => rand(0, 1),

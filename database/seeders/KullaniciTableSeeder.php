@@ -1,17 +1,24 @@
 <?php
 
+namespace Database\Seeders;
+
+use DB;
 use Illuminate\Database\Seeder;
 use App\Models\Kullanici;
 use App\Models\KullaniciDetay;
 
+/**
+ * Class KullaniciTableSeeder
+ * @package Database\Seeders
+ */
 class KullaniciTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeders.
      *
      * @return void
      */
-    public function run(Faker\Generator $faker)
+    public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 

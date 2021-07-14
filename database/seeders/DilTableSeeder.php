@@ -1,11 +1,18 @@
 <?php
 
+namespace Database\Seeders;
+
+use DB;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class DilTableSeeder
+ * @package Database\Seeders
+ */
 class DilTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeders.
      *
      * @return void
      */
