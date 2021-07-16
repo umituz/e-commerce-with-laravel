@@ -1,6 +1,6 @@
 @extends("layouts.master")
 
-@section("title","AnasayfaController")
+@section("title","Anasayfa")
 @section("content")
 
     @include("layouts.messages.session_alerts")
